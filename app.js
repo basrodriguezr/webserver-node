@@ -22,13 +22,14 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
+app.set('view engine', 'hbs');
+
 //middleware: funcion que se ejecuta antes de hacer otra cosa
 app.use(express.static('public'));
 
 
 app.get('/',  (req, res) => {
-  res.send('Dashboard vacío');
-
+  res.render('home');
 });
 
 app.get('/elements',  (req, res) => {
