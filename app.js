@@ -27,12 +27,10 @@ const port = process.env.PORT;
 
 //handlebars
 hbs.registerPartials(__dirname + '/views/partials/', function (err) {});
-
 app.set('view engine', 'hbs');
 
 //middleware: funcion que se ejecuta antes de hacer otra cosa
 app.use(express.static('public'));
-
 
 app.get('/',  (req, res) => {
   res.render('home',{
@@ -40,12 +38,6 @@ app.get('/',  (req, res) => {
       titulo: 'Curso de node'
   });
 });
-
-// app.get('/',  (req, res) => {
-//     res.render('home');
-// });
-
-// app.get('/',  (req, res) => { res.send("Hola Mundo")});
 
 app.get('/elements',  (req, res) => {
     //res.send('Hello World');
@@ -63,12 +55,12 @@ app.get('/generic',  (req, res) => {
     });
 });
 
-// app.get('*',  (req, res) => {
-//     //res.writeHead(404);
-//     // res.send('404 | Page not found');
-//     res.sendFile(__dirname + '/public/404.html');
-  
-// });
+app.get('/*',  (req, res) => {
+    res.render('404',{
+        nombre: 'Bass',
+        titulo: '404 NOT FOUND - ERROR'
+    });
+});
 
 app.listen(port, ()=> {
     console.log(`Listening at http://localhost:${port}`)
