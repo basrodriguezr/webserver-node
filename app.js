@@ -20,9 +20,10 @@
 
 const express = require('express');
 const hbs = require('hbs');
+require('dotenv').config();
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 
 //handlebars
 hbs.registerPartials(__dirname + '/views/partials/', function (err) {});
@@ -62,14 +63,14 @@ app.get('/generic',  (req, res) => {
     });
 });
 
-app.get('*',  (req, res) => {
-    //res.writeHead(404);
-    // res.send('404 | Page not found');
-    res.sendFile(__dirname + '/public/404.html');
+// app.get('*',  (req, res) => {
+//     //res.writeHead(404);
+//     // res.send('404 | Page not found');
+//     res.sendFile(__dirname + '/public/404.html');
   
-});
+// });
 
 app.listen(port, ()=> {
-    console.log(`Escuchando el puerto ${port}`)
+    console.log(`Listening at http://localhost:${port}`)
 });
 
